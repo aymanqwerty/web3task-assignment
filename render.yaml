@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: webhook-dispatcher
+    name: web3task-assignment
     runtime: python
     plan: free
     buildCommand: pip install -r requirements.txt
