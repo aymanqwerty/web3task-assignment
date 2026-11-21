@@ -2,7 +2,7 @@
 
 This is a small service that takes webhook events and delivers them to other servers in the background. The main idea is that the API accepts the event and replies right away, and a background worker does the actual sending. If the other server is down or slow, the worker retries a few times with increasing delays. It also keeps a log of every attempt and makes sure it does not hit the same target too fast.
 
-Live URL: https://web3task-assignment.onrender.com
+Live URL: https://web3task-assignment1.onrender.com
 
 ## Tech stack
 
@@ -64,23 +64,23 @@ Replace the URL with the live one if you are testing the deployment.
 Queue a job that succeeds:
 
 ```bash
-curl -X POST https://web3task-assignment.onrender.com/api/webhooks/dispatch \
+curl -X POST https://web3task-assignment1.onrender.com/api/webhooks/dispatch \
   -H "Content-Type: application/json" \
-  -d '{"destinationUrl":"https://web3task-assignment.onrender.com/api/test/sink","eventId":"evt_1","payload":{"event":"user.signup"}}'
+  -d '{"destinationUrl":"https://web3task-assignment1.onrender.com/api/test/sink","eventId":"evt_1","payload":{"event":"user.signup"}}'
 ```
 
 Check its status (use the jobId from the response above):
 
 ```bash
-curl https://web3task-assignment.onrender.com/api/webhooks/<jobId>
+curl https://web3task-assignment1.onrender.com/api/webhooks/<jobId>
 ```
 
 Queue a job that keeps failing so you can watch the retries:
 
 ```bash
-curl -X POST https://web3task-assignment.onrender.com/api/webhooks/dispatch \
+curl -X POST https://web3task-assignment1.onrender.com/api/webhooks/dispatch \
   -H "Content-Type: application/json" \
-  -d '{"destinationUrl":"https://web3task-assignment.onrender.com/api/test/sink?code=500","eventId":"evt_2","payload":{"event":"ping"}}'
+  -d '{"destinationUrl":"https://web3task-assignment1.onrender.com/api/test/sink?code=500","eventId":"evt_2","payload":{"event":"ping"}}'
 ```
 
 Wait around 15 seconds, then check the status again. You will see 4 attempts (3 retries) with the response code and the growing delays.
