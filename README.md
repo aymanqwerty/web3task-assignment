@@ -98,9 +98,3 @@ uvicorn app.main:app --reload
 ```
 
 The tables are created automatically on startup.
-
-## Deploy on Render
-
-1. Push this repo to GitHub.
-2. In Render, create a new Blueprint and point it at the repo. The `render.yaml` sets up the web service and a free Postgres database and connects them with the `DATABASE_URL`.
-3. After it deploys, use the given URL to test the endpoints above.
